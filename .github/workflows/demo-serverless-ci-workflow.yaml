@@ -76,7 +76,7 @@ jobs:
       
     - name: Upload artifact for deployment job in Lambda
       if: inputs.infraestructure_target == 'Lambda'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.name_artifact.outputs.artifact_base_name }}-ci
         path: Lambda/${{ steps.name_artifact.outputs.artifact_base_name }}.zip
@@ -84,7 +84,7 @@ jobs:
 
     - name: Upload artifact for deployment job in Azure Function
       if: inputs.infraestructure_target == 'AzureFunction'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.name_artifact.outputs.artifact_base_name }}-ci
         path: AzureFunction/${{ steps.name_artifact.outputs.artifact_base_name }}.zip
