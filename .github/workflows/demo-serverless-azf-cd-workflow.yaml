@@ -23,6 +23,11 @@ jobs:
       uses: actions/download-artifact@v4
       with:
        name: ${{inputs.releaseVersion}}-ci
+
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
       
     - name: unzip artifact for deployment
       run: unzip ${{inputs.releaseVersion}}.zip -d workspace
@@ -38,4 +43,3 @@ jobs:
       with:
         app-name: ${{ vars.AZF_NAME }}
         package: ./workspace
-        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
