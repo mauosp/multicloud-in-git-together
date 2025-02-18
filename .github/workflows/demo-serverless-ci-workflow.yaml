@@ -61,7 +61,7 @@ jobs:
 
     - name: Zip artifact for deployment in Lambda
       if: inputs.infraestructure_target == 'Lambda'
-      run: zip -j ${{ steps.name_artifact.outputs.artifact_base_name }}.zip ./HelloRutaNLambda/index.js
+      run: zip -j ${{ steps.name_artifact.outputs.artifact_base_name }}.zip ./HelloGitTogetherLambda/index.js
 
     - name: Zip artifact for deployment in Azure Function
       if: inputs.infraestructure_target == 'AzureFunction'

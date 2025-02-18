@@ -1,6 +1,6 @@
 name: demo-serverless-ci-cd-workflow
 
-run-name: ${{ github.run_id }}-RutaN-Workflow-Execution
+run-name: ${{ github.run_id }}-Git-Together-Workflow-Execution
 
 concurrency: 
   group: default 
@@ -32,7 +32,7 @@ jobs:
     with:
       infraestructure_target: ${{ inputs.infraestructure }}
       node_version: ${{ inputs.infraestructure == 'Lambda' && '14.x' || '18.x' }}
-      folder_target: ${{ inputs.infraestructure == 'Lambda' && './HelloRutaNLambda/index.js' || '* -x "node_modules/*"' }}
+      folder_target: ${{ inputs.infraestructure == 'Lambda' && './HelloGitTogetherLambda/index.js' || '* -x "node_modules/*"' }}
     secrets: inherit
 
   continuos_deployment_job_lambda:

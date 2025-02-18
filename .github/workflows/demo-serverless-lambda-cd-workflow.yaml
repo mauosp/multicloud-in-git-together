@@ -34,4 +34,4 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-2
     
-    - run: aws lambda update-function-code --function-name=LAmbdaRutaN --zip-file=fileb://${{inputs.releaseVersion}}.zip
+    - run: aws lambda update-function-code --function-name=lambda-git-together --zip-file=fileb://${{inputs.releaseVersion}}.zip
