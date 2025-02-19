@@ -1,0 +1,57 @@
+name: demo-serverless-azf-cd-workflow
+
+run-name: ${{ github.run_id }}-ci-cd-azf
+
+concurrency: 
+  group: default 
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy
+        type: choice
+        options:
+          - 'sandbox'
+          - 'development'
+        required: true
+        default: 'sandbox'
+
+jobs:
+  continuos_integration_job:
+    uses: ./.github/workflows/demo-serverless-ci-workflow.yaml
+    with:
+      infraestructure_target: 'AzureFunction'
+      node_version: ${{ inputs.infraestructure == 'Lambda' && '14.x' || '18.x' }}
+      folder_target: ${{ inputs.infraestructure == 'Lambda' && './HelloGitTogetherLambda/index.js' || '* -x "node_modules/*"' }}
+    secrets: inherit
+
+  continuos-deployment-job:
+    runs-on: ubuntu-latest
+    needs: continuos_integration_job
+    environment: ${{inputs.environment}}
+    steps:
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v4
+      with:
+       name: ${{inputs.releaseVersion}}-ci
+
+    - name: 'Login via Azure CLI'
+      uses: azure/login@latest
+      with:
+        creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+      
+    - name: unzip artifact for deployment
+      run: unzip ${{inputs.releaseVersion}}.zip -d workspace
+
+    - name: unzip output
+      run: ls -ls workspace
+
+    - name: "Deploy stage"
+      run: echo "Deploy started!"
+    
+    - name: 'Run Azure Functions action'
+      uses: Azure/functions-action@latest
+      with:
+        app-name: ${{ vars.AZF_NAME }}
+        package: ./workspace
