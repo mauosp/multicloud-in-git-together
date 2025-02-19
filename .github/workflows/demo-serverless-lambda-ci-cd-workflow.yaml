@@ -1,7 +1,6 @@
 name: demo-serverless-lambda-ci-cd-workflow
 
-run-name: "${{ github.actor }}-${{ github.event.head_commit.timestamp }}-${{ inputs.environment }}-ci-cd-lambda"
-
+run-name: "${{ github.actor }}-${{ github.run_id }}-${{ inputs.environment }}-ci-cd-lambda"
 
 concurrency: 
   group: default 

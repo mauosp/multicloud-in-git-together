@@ -1,6 +1,6 @@
 name: demo-serverless-azf-ci-cd-workflow
 
-run-name: ${{ github.run_id }}-ci-cd-azf
+run-name: "${{ github.actor }}-${{ github.run_id }}-${{ inputs.environment }}-ci-cd-azf"
 
 concurrency: 
   group: default 
