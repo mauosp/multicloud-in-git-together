@@ -1,6 +1,6 @@
 name: demo-serverless-lambda-ci-cd-workflow
 
-run-name: "${{ github.actor }}-${{ github.run_id }}-${{ inputs.environment }}-ci-cd-lambda"
+run-name: "${{ github.actor }}-${{ github.run_id }}-${{ inputs.environment || 'sandbox' }}-ci-cd-lambda"
 
 concurrency: 
   group: default 
@@ -33,7 +33,7 @@ jobs:
     secrets: inherit
 
   continuos-deployment-job:
-    environment: ${{inputs.environment}}
+    environment: ${{ inputs.environment || 'sandbox' }}
     needs: continuos_integration_job
     runs-on: ubuntu-latest
     steps:

@@ -1,6 +1,6 @@
 name: demo-serverless-azf-ci-cd-workflow
 
-run-name: "${{ github.actor }}-${{ github.run_id }}-${{ inputs.environment }}-ci-cd-azf"
+run-name: "${{ github.actor }}-${{ github.run_id }}-${{ inputs.environment || 'sandbox' }}-ci-cd-azf"
 
 concurrency: 
   group: default 
@@ -35,7 +35,7 @@ jobs:
   continuos-deployment-job:
     runs-on: ubuntu-latest
     needs: continuos_integration_job
-    environment: ${{inputs.environment}}
+    environment: ${{ inputs.environment || 'sandbox' }}
     steps:
     - name: Download artifact from build job
       uses: actions/download-artifact@v4
