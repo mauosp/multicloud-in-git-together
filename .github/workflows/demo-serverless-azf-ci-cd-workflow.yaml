@@ -42,7 +42,7 @@ jobs:
         creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
       
     - name: unzip artifact for deployment
-      run: unzip ${{inputs.releaseVersion}}.zip -d workspace
+      run: unzip ${{ needs.continuos_integration_job.outputs.artifact_base_name }}.zip -d workspace
 
     - name: unzip output
       run: ls -ls workspace
