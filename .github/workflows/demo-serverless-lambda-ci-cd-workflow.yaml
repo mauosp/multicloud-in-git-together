@@ -28,6 +28,7 @@ jobs:
 
   continuos-deployment-job:
     environment: ${{inputs.environment}}
+    needs: continuos_integration_job
     runs-on: ubuntu-latest
     steps:
     - name: Download artifact from build job
