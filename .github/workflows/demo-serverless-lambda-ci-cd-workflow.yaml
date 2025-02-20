@@ -28,7 +28,7 @@ jobs:
     uses: ./.github/workflows/demo-serverless-ci-workflow.yaml
     with:
       infraestructure_target: 'Lambda'
-      node_version: ${{ inputs.infraestructure == 'Lambda' && '14.x' || '18.x' }}
+      node_version: ${{ inputs.infraestructure == 'Lambda' && '14.x' || '18.x' }} #FIX For educational use only
     secrets: inherit
 
   continuos-deployment-job:
