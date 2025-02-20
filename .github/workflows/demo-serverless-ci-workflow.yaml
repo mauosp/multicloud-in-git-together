@@ -19,6 +19,8 @@ on:
 jobs:
   continuos_integration_job:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: ${{ inputs.infraestructure_target == 'Lambda' && 'Lambda' || 'AzureFunction' }}
