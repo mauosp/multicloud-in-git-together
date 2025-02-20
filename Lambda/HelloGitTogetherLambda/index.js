@@ -4,6 +4,6 @@ exports.handler = async (event, context) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
     console.log('Community Info: ', event.message);
     console.log('Console for test #2');
-    return "Hello Gente From Git Together";
+    return "Holaa Gente From Git Together";
     // throw new Error('Something went wrong');
 };

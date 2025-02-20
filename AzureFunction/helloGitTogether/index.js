@@ -3,8 +3,8 @@
 
     const name = (req.query.name || (req.body && req.body.name));
     const responseMessage = name
-        ? "Hola, " + name + ". ¡Bienvenidos a la demo de GitTogether!"
-        : "¡Bienvenidos a la demo de GitTogether!";
+        ? "Hi, " + name + ". ¡Bienvenidos a la demo de GitTogether!"
+        : "¡Welcome a la demo de GitTogether!";
 
     context.res = {
         // status: 200, /* Defaults to 200 */
