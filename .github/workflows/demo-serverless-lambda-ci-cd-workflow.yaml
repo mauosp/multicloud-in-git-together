@@ -29,7 +29,6 @@ jobs:
     with:
       infraestructure_target: 'Lambda'
       node_version: ${{ inputs.infraestructure == 'Lambda' && '14.x' || '18.x' }}
-      folder_target: ${{ inputs.infraestructure == 'Lambda' && './HelloGitTogetherLambda/index.js' || '* -x "node_modules/*"' }}
     secrets: inherit
 
   continuos-deployment-job:
