@@ -3,7 +3,7 @@
 
     const name = (req.query.name || (req.body && req.body.name));
     const responseMessage = name
-        ? "Bye, " + name + ". ¡Gracias por asistir a la demo!"
+        ? "Bye, " + name + ". ¡Gracikkkas por asistir a la demo!"
         : "¡Thanks por asistir a la demo!";
 
     context.res = {
